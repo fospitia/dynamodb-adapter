@@ -33,7 +33,7 @@ async fn main() -> Result<()> {
 }
 ```
 
-## Test with DynamoBD Local
+## Test with DynamoDB Local
 
 ```shell
 docker pull amazon/dynamodb-local
