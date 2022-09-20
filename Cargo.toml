@@ -6,6 +6,7 @@ edition = "2018"
 description = "AWS DynamoDB adapter for casbin-rs"
 license-file = "LICENSE"
 readme = "README.md"
+homepage = "https://github.com/fospitia/dynamodb-adapter"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
