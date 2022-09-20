@@ -9,7 +9,10 @@ Based on [Diesel](https://github.com/casbin-rs/diesel-adapter) adapter.
 Add it to `Cargo.toml`
 
 ```
+aws-config = "0.48.0"
+aws-sdk-dynamodb = "0.18.0"
 dynamodb-adapter = "0.1.0"
+tokio = { version = "1.21.1",  features = ["macros", "rt-multi-thread"] }
 ```
 
 ## Example
@@ -21,11 +24,11 @@ use dynamodb_adapter::DynamoDBAdapter;
 #[tokio::main]
 async fn main() -> Result<()> {
     let config = aws_config::load_from_env().await;
-    let client = aws_sdk_dynamodb::Client::new(config);
+    let client = aws_sdk_dynamodb::Client::new(&config);
 
-    let mut m = DefaultModel::from_file("examples/rbac_model.conf").await?;
+    let m = DefaultModel::from_file("examples/rbac_model.conf").await?;
     let a = DynamoDBAdapter::new(&client, "Casbin_Policies")?;
-    let mut e = Enforcer::new(m, a).await?;
+    let _e = Enforcer::new(m, a).await?;
     Ok(())
 }
 ```
