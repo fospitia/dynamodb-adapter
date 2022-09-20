@@ -19,12 +19,12 @@ pub struct DynamoDBAdapter {
 }
 
 impl DynamoDBAdapter {
-    pub fn new(client: &Client, table_name: &str) -> Self {
-        Self {
+    pub fn new(client: &Client, table_name: &str) -> Result<Self> {
+        Ok(Self {
             client: client.clone(),
             table_name: table_name.to_string(),
             is_filtered: false,
-        }
+        })
     }
 
     fn get_item_id(&self, ptype: &str, rule: &Vec<String>) -> Result<String> {

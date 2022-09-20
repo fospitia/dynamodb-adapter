@@ -74,7 +74,7 @@ mod tests {
         let m = DefaultModel::from_file("examples/rbac_model.conf").await?;
         let mut e = Enforcer::new(m, file_adapter).await.unwrap();
 
-        let mut adapter = DynamoDBAdapter::new(&client, TABLE_NAME);
+        let mut adapter = DynamoDBAdapter::new(&client, TABLE_NAME)?;
 
         assert!(adapter.save_policy(e.get_mut_model()).await.is_ok());
 
@@ -265,7 +265,7 @@ mod tests {
         init_table(&client).await;
 
         let m = DefaultModel::from_file("examples/rbac_model.conf").await?;
-        let adapter = DynamoDBAdapter::new(&client, TABLE_NAME);
+        let adapter = DynamoDBAdapter::new(&client, TABLE_NAME)?;
         let mut e = Enforcer::new(m, adapter).await?;
 
         let rm = e.get_role_manager();
